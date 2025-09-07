@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "mcbotw",
+  "version": "${version}",
+  "name": "MCBotw",
+  "description": "Una mod unica di Zelda Breath of the Wild",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "com.zoster.mcbotw.client.McbotwDataGenerator"
+    ],
+    "client": [
+      "com.zoster.mcbotw.client.McbotwClient"
+    ],
+    "main": [
+      "com.zoster.mcbotw.Mcbotw"
+    ]
+  },
+  "mixins": [
+    "mcbotw.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-language-kotlin": ">=${kotlin_loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
