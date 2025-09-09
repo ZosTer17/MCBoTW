@@ -1,21 +1,22 @@
 package com.zoster.mcbotw
 
+import com.zoster.mcbotw.events.ModEvents
+import com.zoster.mcbotw.networking.ModPayloads
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-object Mcbotw : ModInitializer {
-    private const val MOD_ID = "mcbotw"
-    private val logger = LoggerFactory.getLogger(MOD_ID)
+class Mcbotw : ModInitializer {
+    companion object {
+        const val MOD_ID = "mcbotw"
+        val logger: Logger get() = LoggerFactory.getLogger(MOD_ID)
+    }
 
     override fun onInitialize() {
         logger.info("La mod è stata attivata!")
 
-        ServerPlayConnectionEvents.JOIN.register { handler, _, _ ->
-            val player = handler.player
-            player.inventory.insertStack(0, ItemStack(Items.BLUE_ICE))
-        }
+        ModEvents.register()
+
+        ModPayloads.registerS2CPackets()
     }
 }
