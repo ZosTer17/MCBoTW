@@ -24,7 +24,6 @@ object ModEvents {
 
     private fun onCryonisUse() {
         UseBlockCallback.EVENT.register { player, world, hand, blockHit ->
-            logger.info("Cliccato con tasto destro: sono nel metodo onCryonisUse")
             player.sendMessage(Text.of { "metodo attivato: onCryonisUse" }, true)
             ActionResult.SUCCESS
         }

@@ -12,16 +12,11 @@ object ModPayloads {
     }
 
     fun registerS2CPackets() {
-        logger.info("Metodo registerS2CPackets, registrazione del payload")
-
-        logger.info(CryonisHudS2CPayload.ID.toString())
         PayloadTypeRegistry.playS2C().register(CryonisHudS2CPayload.ID, CryonisHudS2CPayload.CODEC)
     }
 
     fun onClientReceive() {
         ClientPlayNetworking.registerGlobalReceiver(CryonisHudS2CPayload.ID) { payload, context ->
-            logger.info("blockId lato client: ${payload.blockId}")
-
             context.client().execute {
                 val blockId = payload.blockId
                 val block = Registries.BLOCK.get(blockId)
